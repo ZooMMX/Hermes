@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<th:block layout:fragment="titulo">
+    Título <small>subtítulo</small>
+</th:block>
+<th:block layout:fragment="breadcrumb">
+    <li>
+        <a href="/pruebas">Pruebas</a>
+    </li>
+</th:block>
+<div layout:fragment="content">
+
+    <h2>Prueba</h2>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#savePruebaModal" ng-click="clear()">
+        <span class="glyphicon glyphicon-flash"></span> <span>Nueva prueba/exámen</span>
+    </button>
+    <div class="modal fade" id="savePruebaModal" tabindex="-1" role="dialog" aria-labelledby="myPruebaLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form th:action="@{/pruebas}" name="editForm" role="form" novalidate="novalidate" ng-submit="create()" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myPruebaLabel">Create or edit a Prueba</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="prueba.id" readonly="readonly"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" name="nombre"
+                                   ng-model="prueba.nombre"/>
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="hermesApp.prueba.notas">Notas</label>
+                            <textarea name="notas" class="form-control"></textarea>
+                            <!--<input type="text" class="form-control" name="notas"
+                                   ng-model="prueba.notas"/>-->
+
+                        </div>
+                        <div class="form-group">
+                            <label>Documento</label>
+                            <input id="file" type="file" name="file" class="form-control" multiple="multiple"/>
+
+                        </div>
+                        <!--<div class="form-group">
+                            <label>Activa</label>
+                            <input type="checkbox" class="form-control" name="activa"
+                                   ng-model="prueba.activa"/>
+
+                        </div>-->
+
+                        <!--<div class="form-group">
+                            <label>Autor</label>
+                            <select class="form-control" name="autor" ng-model="prueba.autor.id" ng-options="user.id as user.login for user in users">
+                            </select>
+                        </div>-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deletePruebaConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this Prueba?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <!--<th>Notas</th>-->
+                <!--<th translate="hermesApp.prueba.documento">Documento</th>-->
+                <th>Fecha</th>
+                <!--<th translate="hermesApp.prueba.activa">Activa</th>-->
+                <th>Autor</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="prueba, i : ${pruebas}">
+                <td th:text="${prueba.id}">{{prueba.id}}</td>
+                <td th:text="${prueba.nombre}">{{prueba.nombre}}</td>
+                <!--<td>{{prueba.notas}}</td>-->
+                <!--<td>{{prueba.documento}}</td>-->
+                <td th:text="${prueba.fecha}">{{prueba.fecha}}</td>
+                <!--<td>{{prueba.activa}}</td>-->
+                <td th:text="${prueba.autor!=null?prueba.autor.fullname:'NA'}">{{prueba.autor.login}}</td>
+                <td>
+                    <a th:href="${'/prueba/'+prueba.id}" data-target="#ajax" data-toggle="modal"
+                            class="btn btn-info">
+                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Ver</span>
+                    </a>
+                    <a th:href="${'/prueba/'+prueba.id+'?readonly=0'}" data-target="#ajax" data-toggle="modal"
+                            class="btn btn-primary">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Editar</span>
+                    </a>
+                    <button type="button"
+                            class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Archivar</span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Generic Modal -->
+    <div class="modal fade" id="ajax" role="basic" aria-hidden="true">
+        <div class="page-loading page-loading-boxed">
+            <img src="img/loading-spinner-grey.gif" alt="" class="loading"/>
+                    <span>
+                    &nbsp;&nbsp;Cargando... </span>
+        </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+</div>
+<div layout:fragment="scripts">
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="/plugins/select2/select2.css" rel="stylesheet" type="text/css"/>
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="/plugins/htmltable_export/tableExport.js"></script>
+    <script type="text/javascript" src="/plugins/htmltable_export/jquery.base64.js"></script>
+    <!-- END PAGE LEVEL PLUGINS-->
+</div>
+</body>
+</html>
