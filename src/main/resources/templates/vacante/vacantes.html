@@ -10,115 +10,100 @@
 </th:block>
 <th:block layout:fragment="breadcrumb">
     <li>
-        <a href="/pruebas">Pruebas</a>
+        <a href="/vacantes">Vacantes</a>
     </li>
 </th:block>
 <div layout:fragment="content">
 
-    <h2 translate="hermesApp.puesto.home.title">Puesto</h2>
+    <h2 translate="hermesApp.puesto.home.title">Vacantes</h2>
 
     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#savePuestoModal" ng-click="clear()">
-        <span class="glyphicon glyphicon-flash"></span> <span translate="hermesApp.puesto.home.createLabel">Create a new Puesto</span>
+        <span class="glyphicon glyphicon-flash"></span> <span translate="hermesApp.puesto.home.createLabel">Agregar vacantes</span>
     </button>
     <div class="modal fade" id="savePuestoModal" tabindex="-1" role="dialog" aria-labelledby="myPuestoLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form name="editForm" role="form" novalidate ng-submit="create()">
+                <form th:action="@{/vacantes}" name="editForm" role="form" novalidate="novalidate" ng-submit="create()" method="post">
 
-                    <div class="modal-header">
+                    <!--<div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 ng-click="clear()">&times;</button>
                         <h4 class="modal-title" id="myPuestoLabel" translate="hermesApp.puesto.home.createOrEditLabel">Create or edit a Puesto</h4>
-                    </div>
+                    </div>-->
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" name="id"
-                                   ng-model="puesto.id" readonly="readonly">
+                        <div class="tabbable-line">
+                        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active"><a href="#tab_1_1" data-toggle="tab"> Información </a></li>
+                            <li><a href="#tab_1_2" data-toggle="tab"> Perfil </a></li>
+                            <li><a href="#tab_1_3" data-toggle="tab"> Pruebas </a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="tab_1_1">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input type="text" class="form-control" name="id"
+                                           ng-model="puesto.id" readonly="readonly"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label translate="hermesApp.puesto.descripcion">Descripción</label>
+                                    <input type="text" class="form-control" name="descripcion"/>
+
+                                </div>
+                                <div class="form-group">
+                                    <label translate="hermesApp.puesto.tipo_contrato">Tipo de contrato</label>
+                                    <input type="text" class="form-control" name="tipo_contrato"/>
+                                </div>
+                                <div class="form-group">
+                                    <label translate="hermesApp.puesto.responsabilidades">Responsabilidades</label>
+                                    <textarea class="form-control" name="responsabilidades" rows="3">
+
+                                    </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label translate="hermesApp.puesto.sueldo">Sueldo</label>
+                                    <input type="number" class="form-control" name="sueldo"
+                                           ng-model="puesto.sueldo"/>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab_1_2">
+                                <div class="form-group">
+                                    <label translate="hermesApp.puesto.nivel_academico">Nivel académico</label>
+                                    <textarea name="nivel_academico" rows="3" class="form-control"></textarea>
+
+                                </div>
+                                <div class="form-group">
+                                    <label translate="hermesApp.puesto.experiencia_laboral">Experiencia laboral</label>
+                                    <textarea name="experiencia_laboral" rows="3" class="form-control"></textarea>
+
+                                </div>
+                                <div class="form-group">
+                                    <label translate="hermesApp.puesto.conocimientos">Conocimientos</label>
+                                    <textarea name="conocimientos" rows="3" class="form-control"></textarea>
+
+                                </div>
+                                <div class="form-group">
+                                    <label translate="hermesApp.puesto.aptitudes">Aptitudes</label>
+                                    <textarea name="aptitudes" rows="3" class="form-control"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab_1_3">
+                                <select multiple="multiple" class="multi-select" id="my_multi_select1" name="pruebas_asignadas" th:readonly="${readonly}">
+                                    <option th:each="prueba, i : ${pruebas}" th:text="${prueba.nombre}" th:value="${prueba.id}">Dallas Cowboys</option>
+                                </select>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label translate="hermesApp.puesto.descripcion">Descripcion</label>
-                            <input type="text" class="form-control" name="descripcion"
-                                   ng-model="puesto.descripcion"/>
-
                         </div>
-                        <div class="form-group">
-                            <label translate="hermesApp.puesto.tipo_contrato">Tipo_contrato</label>
-                            <input type="text" class="form-control" name="tipo_contrato"
-                                   ng-model="puesto.tipo_contrato"/>
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="hermesApp.puesto.responsabilidades">Responsabilidades</label>
-                            <input type="text" class="form-control" name="responsabilidades"
-                                   ng-model="puesto.responsabilidades"/>
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="hermesApp.puesto.sueldo">Sueldo</label>
-                            <input type="number" class="form-control" name="sueldo"
-                                   ng-model="puesto.sueldo">
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="hermesApp.puesto.nivel_academico">Nivel_academico</label>
-                            <input type="text" class="form-control" name="nivel_academico"
-                                   ng-model="puesto.nivel_academico"/>
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="hermesApp.puesto.experiencia_laboral">Experiencia_laboral</label>
-                            <input type="text" class="form-control" name="experiencia_laboral"
-                                   ng-model="puesto.experiencia_laboral"/>
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="hermesApp.puesto.conocimientos">Conocimientos</label>
-                            <input type="text" class="form-control" name="conocimientos"
-                                   ng-model="puesto.conocimientos"/>
-
-                        </div>
-                        <div class="form-group">
-                            <label translate="hermesApp.puesto.aptitudes">Aptitudes</label>
-                            <input type="text" class="form-control" name="aptitudes"
-                                   ng-model="puesto.aptitudes"/>
-
-                        </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancelar</span>
                         </button>
                         <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="deletePuestoConfirmation">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form name="deleteForm" ng-submit="confirmDelete(puesto.id)">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                                ng-click="clear()">&times;</button>
-                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p translate="hermesApp.puesto.delete.question" translate-values="{id: '{{puesto.id}}'}">Are you sure you want to delete this Puesto?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
-                        </button>
-                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Guardar</span>
                         </button>
                     </div>
                 </form>
@@ -133,8 +118,8 @@
                 <th>ID</th>
                 <th translate="hermesApp.puesto.descripcion">Descripcion</th>
                 <th translate="hermesApp.puesto.tipo_contrato">Tipo_contrato</th>
-                <!--<th translate="hermesApp.puesto.responsabilidades">Responsabilidades</th>-->
-                <th translate="hermesApp.puesto.sueldo">Sueldo</th>
+                <th translate="hermesApp.puesto.responsabilidades">Responsabilidades</th>
+                <!--<th translate="hermesApp.puesto.sueldo">Sueldo</th>-->
                 <!--<th translate="hermesApp.puesto.nivel_academico">Nivel_academico</th>
                 <th translate="hermesApp.puesto.experiencia_laboral">Experiencia_laboral</th>
                 <th translate="hermesApp.puesto.conocimientos">Conocimientos</th>
@@ -143,44 +128,33 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="puesto in puestos">
-                <td><a ui-sref="puestoDetail({id:puesto.id})">{{puesto.id}}</a></td>
-                <td>{{puesto.descripcion}}</td>
-                <td>{{puesto.tipo_contrato}}</td>
-                <!--<td>{{puesto.responsabilidades}}</td>-->
-                <td>{{puesto.sueldo}}</td>
+            <tr th:each="puesto, i : ${puestos}">
+                <td th:text="${puesto.id}"></td>
+                <td th:text="${puesto.descripcion}"></td>
+                <td th:text="${puesto.tipo_contrato}"></td>
+                <td th:text="${puesto.responsabilidades.substring(0,30)}"></td>
+                <!--<td>{{puesto.sueldo}}</td>-->
                 <!--<td>{{puesto.nivel_academico}}</td>
                 <td>{{puesto.experiencia_laboral}}</td>
                 <td>{{puesto.conocimientos}}</td>
                 <td>{{puesto.aptitudes}}</td>-->
                 <td>
-                    <button type="submit"
-                            ui-sref="puestoDetail({id:puesto.id})"
-                            class="btn btn-info">
-                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
-                    </button>
-                    <button type="submit"
-                            ng-click="update(puesto.id)"
-                            class="btn btn-primary">
-                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
-                    </button>
-                    <button type="submit"
-                            ng-click="delete(puesto.id)"
-                            class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                    <a th:href="${'/vacante/'+puesto.id}" data-target="#ajax" data-toggle="modal"
+                       class="btn btn-info">
+                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Ver</span>
+                    </a>
+                    <a th:href="${'/vacante/'+puesto.id+'?readonly=0'}" data-target="#ajax" data-toggle="modal"
+                       class="btn btn-primary">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Editar</span>
+                    </a>
+                    <button type="button"
+                            class="btn btn-danger" onclick="alert('Ésto es sólo un prototipo');">
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Archivar</span>
                     </button>
                 </td>
             </tr>
             </tbody>
         </table>
-        <nav>
-            <ul class="pager">
-                <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
-                <li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a href="#">&lt;</a></li>
-                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a href="#">&gt;</a></li>
-                <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
-            </ul>
-        </nav>
     </div>
     <!-- Generic Modal -->
     <div class="modal fade" id="ajax" role="basic" aria-hidden="true">
@@ -199,13 +173,24 @@
 <div layout:fragment="scripts">
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="/plugins/select2/select2.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/plugins/jquery-multi-select/css/multi-select.css"/>
     <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
     <script type="text/javascript" src="/plugins/select2/select2.min.js"></script>
     <script type="text/javascript" src="/plugins/htmltable_export/tableExport.js"></script>
     <script type="text/javascript" src="/plugins/htmltable_export/jquery.base64.js"></script>
+    <script type="text/javascript" src="/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
     <!-- END PAGE LEVEL PLUGINS-->
+    <script>
+        jQuery(document).ready(function() {
+            $('.multi-select').multiSelect({selectableHeader:"Disponibles", selectionHeader:"Asignadas"});
+            $("#ajax").on('hidden.bs.modal', function () {
+                $(this).data('bs.modal', null);
+
+            });
+        });
+    </script>
 </div>
 </body>
 </html>

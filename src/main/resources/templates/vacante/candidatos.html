@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<th:block layout:fragment="titulo">
+    Título <small>subtítulo</small>
+</th:block>
+<th:block layout:fragment="breadcrumb">
+    <li>
+        <a href="/candidatos">Candidatos</a>
+    </li>
+</th:block>
+<div layout:fragment="content">
+    <!-- BEGIN TABLE PORTLET-->
+    <div class="portlet box purple">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-users"></i>Candidatos
+            </div>
+            <div class="actions">
+                <a href="/candidatos/asignar" class="btn btn-default btn-circle">
+                    <i class="fa fa-plus"></i>
+                    <span class="hidden-480">
+                    Asignar usuario como candidato </span>
+                </a>
+                <div class="btn-group">
+                    <a class="btn btn-default btn-circle" href="#" data-toggle="dropdown">
+                        <i class="fa fa-share"></i>
+                        <span class="hidden-480">
+                        Herramientas </span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="#" id="xlsLink" download="usuarios.xls" onClick ="$('#table').tableExport({type:'excel',escape:'false'});">
+                                Exportar a Excel </a>
+                        </li>
+                        <li>
+                            <a href="#" id="csvLink" download="usuarios.csv" onclick="$('#table').tableExport({type:'csv',escape:'false'});">
+                                Exportar a CSV </a>
+                        </li>
+                        <li>
+                            <a href="#" id="xmlLink" download="usuarios.xml" onclick="$('#table').tableExport({type:'xml',escape:'false'});">
+                                Exportar a XML </a>
+                        </li>
+                        <!--<li class="divider">
+                        </li>
+                        <li>
+                            <a href="#">
+                            Imprimir </a>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Nombre completo
+                        </th>
+                        <th>
+                            Edad
+                        </th>
+                        <th>
+                            Puesto al que aplica
+                        </th>
+                        <th>
+                            Acciones
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="c,iterationStatus  : ${candidatos}">
+                        <td th:text="${iterationStatus.count}">1</td>
+                        <td th:text="${c.getUser().getFullname()}">Pau</td>
+                        <td th:utext="${c.getEdad()}">28</td>
+                        <td th:utext="${c.getPuesto()!=null} ? ${c.getPuesto().getDescripcion()} : 'No se asignó un puesto'">Software developer JR.</td>
+                        <td>Editar - Borrar</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END TABLE PORTLET-->
+    <!-- Modal -->
+    <div class="modal fade" id="ajax" role="basic" aria-hidden="true">
+        <div class="page-loading page-loading-boxed">
+            <img src="img/loading-spinner-grey.gif" alt="" class="loading"/>
+                <span>
+                &nbsp;&nbsp;Cargando... </span>
+        </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+</div>
+<!-- END CONTENT -->
+<div layout:fragment="scripts">
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="/plugins/select2/select2.css" rel="stylesheet" type="text/css"/>
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="/plugins/htmltable_export/tableExport.js"></script>
+    <script type="text/javascript" src="/plugins/htmltable_export/jquery.base64.js"></script>
+    <!-- END PAGE LEVEL PLUGINS-->
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+
+<div class="modal-content">
+    <form th:action="@{/vacantes}" name="editForm" role="form" novalidate="novalidate" ng-submit="create()" method="post" enctype="multipart/form-data">
+
+        <!--<div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myPruebaLabel">Create or edit a Prueba</h4>
+        </div>-->
+        <div class="modal-body">
+            <div class="tabbable-line">
+                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                    <li class="active"><a href="#xtab_1_1" data-toggle="tab"> Información </a></li>
+                    <li><a href="#xtab_1_2" data-toggle="tab"> Perfil </a></li>
+                    <li><a href="#xtab_1_3" data-toggle="tab"> Pruebas </a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="xtab_1_1">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id" th:value="${puesto.id}" readonly="readonly"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="hermesApp.puesto.descripcion">Descripción</label>
+                            <input type="text" class="form-control" name="descripcion" th:value="${puesto.descripcion}" th:readonly="${readonly}"/>
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="hermesApp.puesto.tipo_contrato">Tipo de contrato</label>
+                            <input type="text" class="form-control" name="tipo_contrato" th:value="${puesto.tipo_contrato}" th:readonly="${readonly}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Responsabilidades</label>
+                            <textarea class="form-control" name="responsabilidades" rows="3" th:text="${puesto.responsabilidades}" th:readonly="${readonly}">
+
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label translate="hermesApp.puesto.sueldo">Sueldo</label>
+                            <input type="number" class="form-control" name="sueldo" th:value="${puesto.sueldo}" th:readonly="${readonly}"/>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="xtab_1_2">
+                        <div class="form-group">
+                            <label translate="hermesApp.puesto.nivel_academico">Nivel académico</label>
+                            <textarea name="nivel_academico" rows="3" class="form-control" th:text="${puesto.nivel_academico}" th:readonly="${readonly}"></textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="hermesApp.puesto.experiencia_laboral">Experiencia laboral</label>
+                            <textarea name="experiencia_laboral" rows="3" class="form-control" th:text="${puesto.experiencia_laboral}" th:readonly="${readonly}"></textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="hermesApp.puesto.conocimientos">Conocimientos</label>
+                            <textarea name="conocimientos" rows="3" class="form-control" th:text="${puesto.conocimientos}" th:readonly="${readonly}"></textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="hermesApp.puesto.aptitudes">Aptitudes</label>
+                            <textarea name="aptitudes" rows="3" class="form-control" th:text="${puesto.aptitudes}" th:readonly="${readonly}"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="xtab_1_3">
+                        <div class="form-group">
+                            <select multiple="multiple" class="multi-select" id="pruebas_asignadas" name="pruebas_asignadas" th:readonly="${readonly}">
+                                <option th:each="prueba, i : ${pruebas}" th:text="${prueba.nombre}" th:value="${prueba.id}" th:selected="${pruebasAsignadas.contains(prueba)}">Prueba X</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="form-group">
+                <label>Autor</label>
+                <select class="form-control" name="autor" ng-model="prueba.autor.id" ng-options="user.id as user.login for user in users">
+                </select>
+            </div>-->
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+            </button>
+            <button type="submit" class="btn btn-primary" th:if="${!readonly}">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    jQuery(document).ready(function() {
+        $('#pruebas_asignadas').multiSelect({selectableHeader:"Disponibles", selectionHeader:"Asignadas"});
+    });
+</script>

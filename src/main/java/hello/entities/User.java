@@ -1,6 +1,7 @@
 package hello.entities;
 
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +24,8 @@ public class User {
     private String password;
     private boolean enabled = true;
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
+    private Candidato candidato;
+
 	public User() {
 	}
 
@@ -115,5 +118,14 @@ public class User {
         ur.setUser(this);
         ur.setRole(role);
         userRole.add(ur);
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    public Candidato getCandidato() {
+        return candidato;
+    }
+
+    public void setCandidato(Candidato candidato) {
+        this.candidato = candidato;
     }
 }
