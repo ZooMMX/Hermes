@@ -1,30 +1,24 @@
 package hello.controllers;
 
-import hello.MediUser;
 import hello.PruebaRepository;
 import hello.PuestoRepository;
 import hello.entities.Prueba;
 import hello.entities.Puesto;
-import hello.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
- * Created by octavioruiz on 22/04/15.
+ * Created by paumedina on 22/04/15.
  */
 @Controller
 public class VacanteController {

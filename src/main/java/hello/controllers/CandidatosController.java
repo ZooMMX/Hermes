@@ -7,6 +7,7 @@ import hello.entities.Candidato;
 import hello.entities.Puesto;
 import hello.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by octavioruiz on 26/04/15.
+ * Created by paumedina on 26/04/15.
  */
 @Controller
 public class CandidatosController {
@@ -27,6 +28,7 @@ public class CandidatosController {
     @Autowired
     PuestoRepository puestoRepository;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/candidatos")
     private String verCandidatos(Model model) {
 
@@ -37,17 +39,24 @@ public class CandidatosController {
         return "vacante/candidatos";
     }
 
+    //Muestra la página para asignar vacante a candi
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/candidatos/asignar")
     private String verFormularioAsignacion(Model model) {
 
         model.addAttribute("selectedMenu", "candidatos");
+        List<User> usuarios = userRepository.findActiveUsers();
+        model.addAttribute("usuarios", usuarios);
         Candidato candidato = new Candidato();
-
         model.addAttribute("candidato", candidato);
+        List<Puesto> puestos = puestoRepository.findAll();
+        model.addAttribute("puestos", puestos);
+        model.addAttribute("readonly", false);
 
         return "vacante/candidato";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/candidatos/asignar", method = RequestMethod.POST)
     private String asignarCandidato(
             @ModelAttribute Candidato candidato,
@@ -56,6 +65,9 @@ public class CandidatosController {
 
         User user = userRepository.findByUsername(candidato.getUsername());
         Puesto puesto = puestoRepository.findOne(puesto_id);
+
+        List<Puesto> puestos = puestoRepository.findAll();
+        model.addAttribute("puestos", puestos);
 
         user.setCandidato(candidato);
         candidato.setUser(user);
@@ -68,12 +80,18 @@ public class CandidatosController {
         return "redirect:/candidatos";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/candidatos/ver/{username}")
-    private String verCandidato(Model m, @PathVariable String username) {
+    private String verCandidato(Model m, @PathVariable String username, @RequestParam(value = "readonly", defaultValue = "true") Boolean readonly) {
 
         Candidato c = candidatoRepository.findOne(username);
 
+        List<Puesto> puestos = puestoRepository.findAll();
+        m.addAttribute("puestos", puestos);
         m.addAttribute("candidato", c);
+        List<User> usuarios = userRepository.findActiveUsers();
+        m.addAttribute("usuarios", usuarios);
+        m.addAttribute("readonly", readonly);
 
         return "vacante/candidato";
     }

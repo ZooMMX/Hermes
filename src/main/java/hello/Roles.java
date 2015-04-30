@@ -1,14 +1,12 @@
 package hello;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 10/12/14
  * Time: 20:20
  */
 public enum Roles {
     ROLE_ADMIN,
-    ROLE_VENTAS,
-    ROLE_PLANEACION,
-    ROLE_PRODUCCION
+    ROLE_CANDIDATO
 }

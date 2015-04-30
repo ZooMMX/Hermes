@@ -2,20 +2,14 @@ package hello.controllers;
 
 import hello.MediUser;
 import hello.PruebaRepository;
-import hello.Roles;
 import hello.UserRepository;
-import hello.entities.Archivo;
 import hello.entities.Prueba;
 import hello.entities.User;
-import hello.entities.UserRole;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +24,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 04/12/14
  * Time: 13:52
  */
@@ -121,6 +115,5 @@ public class PruebasController {
 
         return null;
     }
-
 
 }

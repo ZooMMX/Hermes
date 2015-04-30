@@ -1,8 +1,8 @@
 package hello;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 03/12/14
  * Time: 14:06
  *

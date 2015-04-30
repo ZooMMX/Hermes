@@ -1,15 +1,11 @@
 package hello;
 
 import hello.entities.Prueba;
-import hello.entities.User;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
-
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 21/11/14
  * Time: 13:35
  */

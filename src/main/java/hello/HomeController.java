@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 08/12/14
  * Time: 11:29
  */

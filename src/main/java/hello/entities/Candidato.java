@@ -1,17 +1,14 @@
 package hello.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
- * Created by octavioruiz on 26/04/15.
+ * Created by paumedina on 26/04/15.
  */
 
 

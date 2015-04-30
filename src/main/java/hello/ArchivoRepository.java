@@ -4,8 +4,8 @@ import hello.entities.Archivo;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 30/11/14
  * Time: 20:40
  */

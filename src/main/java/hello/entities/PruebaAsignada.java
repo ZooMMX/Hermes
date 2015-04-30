@@ -1,21 +1,14 @@
 package hello.entities;
 
 import javax.persistence.Entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
- * Created by octavioruiz on 26/04/15.
+ * Created by paumedina on 26/04/15.
  */
 
 @Entity

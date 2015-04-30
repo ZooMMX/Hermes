@@ -3,12 +3,11 @@ package hello.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 /**
- * Created by octavioruiz on 23/04/15.
+ * Created by paumedina on 23/04/15.
  */
 
 @Entity

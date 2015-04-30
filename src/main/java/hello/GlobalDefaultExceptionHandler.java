@@ -16,8 +16,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 05/12/14
  * Time: 14:43
  */

@@ -1,15 +1,15 @@
 package hello.entities;
 
+import hello.UserRole;
 import org.hibernate.envers.Audited;
-import org.hibernate.envers.RelationTargetAuditMode;
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 21/11/14
  * Time: 11:30
  */

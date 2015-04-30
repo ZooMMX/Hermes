@@ -13,8 +13,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 14/12/14
  * Time: 19:44
  */
@@ -102,12 +102,16 @@ public class TamtoPermissionEvaluator implements PermissionEvaluator {
                         /* PERMISOS PARA UN DIBUJO */
                         switch (p.getTipoPieza()) {
                             case PC:
-                                if(roles.contains(Roles.ROLE_VENTAS) && a.getFileType().contains("application/pdf")) return true;
+                                //if(roles.contains(Roles.ROLE_VENTAS) && a.getFileType().contains("application/pdf")) return true;
+                                if(roles.contains(Roles.ROLE_ADMIN) && a.getFileType().contains("application/pdf")) return true;
                             case PL:
-                                if(roles.contains(Roles.ROLE_PLANEACION)) return true; break;
+                                //if(roles.contains(Roles.ROLE_PLANEACION)) return true; break;
+                                if(roles.contains(Roles.ROLE_ADMIN)) return true; break;
                             case PE:
-                                if(roles.contains(Roles.ROLE_PLANEACION)) return true;
-                                if(roles.contains(Roles.ROLE_PRODUCCION)) return true; break;
+                                //if(roles.contains(Roles.ROLE_PLANEACION)) return true;
+                                if(roles.contains(Roles.ROLE_ADMIN)) return true;
+                                //if(roles.contains(Roles.ROLE_PRODUCCION)) return true; break;
+                                if(roles.contains(Roles.ROLE_ADMIN)) return true; break;
                         }
                         break;
                     case ITEM:
@@ -115,10 +119,13 @@ public class TamtoPermissionEvaluator implements PermissionEvaluator {
                         switch(p.getTipoPieza()) {
                             case PC:
                             case PL:
-                                if(roles.contains(Roles.ROLE_PLANEACION)) return true; break;
+                                //if(roles.contains(Roles.ROLE_PLANEACION)) return true; break;
+                                if(roles.contains(Roles.ROLE_ADMIN)) return true; break;
                             case PE:
-                                if(roles.contains(Roles.ROLE_PLANEACION)) return true;
-                                if(roles.contains(Roles.ROLE_PRODUCCION)) return true; break;
+                                //if(roles.contains(Roles.ROLE_PLANEACION)) return true;
+                                if(roles.contains(Roles.ROLE_ADMIN)) return true;
+                                //if(roles.contains(Roles.ROLE_PRODUCCION)) return true; break;
+                                if(roles.contains(Roles.ROLE_ADMIN)) return true; break;
                         }
                         break;
                     case PROGRAMA:
@@ -127,7 +134,8 @@ public class TamtoPermissionEvaluator implements PermissionEvaluator {
                             case PC:
                             case PL:
                             case PE:
-                                if(roles.contains(Roles.ROLE_PLANEACION)) return true; break;
+                                //if(roles.contains(Roles.ROLE_PLANEACION)) return true; break;
+                                if(roles.contains(Roles.ROLE_ADMIN)) return true; break;
                         }
                         break;
                 }
@@ -141,9 +149,11 @@ public class TamtoPermissionEvaluator implements PermissionEvaluator {
                             case PC:
                             case PL:
                             case PE:
-                                if(roles.contains(Roles.ROLE_PLANEACION) || roles.contains(Roles.ROLE_PRODUCCION))
+                                //if(roles.contains(Roles.ROLE_PLANEACION) || roles.contains(Roles.ROLE_PRODUCCION))
+                                if(roles.contains(Roles.ROLE_ADMIN) || roles.contains(Roles.ROLE_ADMIN))
                                     return true;
-                                else if(roles.contains(Roles.ROLE_VENTAS) && a.getFileType().contains("application/pdf"))
+                                //else if(roles.contains(Roles.ROLE_VENTAS) && a.getFileType().contains("application/pdf"))
+                                else if(roles.contains(Roles.ROLE_ADMIN) && a.getFileType().contains("application/pdf"))
                                     return true;
 
                         }
@@ -163,7 +173,8 @@ public class TamtoPermissionEvaluator implements PermissionEvaluator {
                             case PC:
                             case PL:
                             case PE:
-                                if(roles.contains(Roles.ROLE_PRODUCCION) || roles.contains(Roles.ROLE_PLANEACION)) return true; break;
+                                //if(roles.contains(Roles.ROLE_PRODUCCION) || roles.contains(Roles.ROLE_PLANEACION)) return true; break;
+                                if(roles.contains(Roles.ROLE_ADMIN) || roles.contains(Roles.ROLE_ADMIN)) return true; break;
                         }
                         break;
                 }

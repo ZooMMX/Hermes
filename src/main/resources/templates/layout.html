@@ -7,7 +7,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
-<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Archivo Tamto</title>
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Hermes HR</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
@@ -25,7 +25,7 @@
 <link href="css/components.css" th:href="@{/css/components.css}" id="style_components" rel="stylesheet" type="text/css"/>
 <link href="css/plugins.css" th:href="@{/css/plugins.css}" rel="stylesheet" type="text/css"/>
 <link href="css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" type="text/css"/>
-<link id="style_color" th:href="@{/css/themes/default.css}" href="css/themes/grey.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" th:href="@{/css/themes/dark.css}" href="css/themes/grey.css" rel="stylesheet" type="text/css"/>
 <link href="css/custom.css" th:href="@{/css/custom.css}" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico" th:href="@{/favicon.ico}"/>
@@ -48,8 +48,8 @@
 	<div class="page-header-inner container">
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
-			<a href="/"><img src="/img/logo_neg_80.png" alt="logo" class="logo-default"/>
-            <!--<font color="white"><h2 class="logo-default">TAMTO</h2></font>-->
+			<a href="/"><img src="/img/hermes-mini.png" alt="logo" style="width: 120px;" class="logo-default"/>
+            <!--<font color="white"><h2 class="logo-default"></h2></font>-->
 			</a>
 			<div class="menu-toggler sidebar-toggler">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -73,9 +73,17 @@
                         <i class="icon-user"></i> Nuevo usuario </a>
 					</li>
 					<li>
-						<a href="/piezaNueva">
-						<i class="icon-tag"></i> Nueva pieza </a>
+						<a href="javascript:;">
+						<i class="icon-tag"></i> Nueva prueba </a>
 					</li>
+                    <li>
+                        <a href="javascript:;">
+                        <i class="icon-tag"></i> Asignar candidato </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                        <i class="icon-tag"></i> Nueva vacante </a>
+                    </li>
 				</ul>
 			</div>
 		</div>
@@ -236,11 +244,21 @@
                             </th:block>
 						</a>
 					</li>
-					<li th:class="${selectedMenu.contains('pieza') ? 'active open' : ''}">
-                        <a href="/piezas">
+					<li th:class="${selectedMenu.contains('vacantes') ? 'active open' : ''}" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="/vacantes">
                             <i class="icon-puzzle"></i>
-                            <span class="title">Piezas</span>
-                            <th:block th:if="${selectedMenu.contains('pieza')}">
+                            <span class="title">Vacantes</span>
+                            <th:block th:if="${selectedMenu.contains('vacantes')}">
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
+                            </th:block>
+                        </a>
+                    </li>
+                    <li th:class="${selectedMenu.contains('candidatos') ? 'active open' : ''}" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="/candidatos">
+                            <i class="icon-puzzle"></i>
+                            <span class="title">Candidatos</span>
+                            <th:block th:if="${selectedMenu.contains('candidatos')}">
                                 <span class="selected"></span>
                                 <span class="arrow open"></span>
                             </th:block>
@@ -262,11 +280,21 @@
                             <span class="title">Sistema</span>
                         </a>
                     </li>-->
-                    <li class="last " th:class="${selectedMenu.contains('manual') ? 'active open' : ''}">
-                        <a href="/manual">
+                    <li class="last " th:class="${selectedMenu.contains('pruebas') ? 'active open' : ''}" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="/pruebas">
                         <i class="icon-docs"></i>
-                        <span class="title">Manual</span>
-                        <th:block th:if="${selectedMenu.contains('manual')}">
+                        <span class="title">Pruebas</span>
+                        <th:block th:if="${selectedMenu.contains('pruebas')}">
+                            <span class="selected"></span>
+                            <span class="arrow open"></span>
+                        </th:block>
+                        </a>
+                    </li>
+                    <li class="last " th:class="${selectedMenu.contains('tomarPruebas') ? 'active open' : ''}" sec:authorize="hasRole('ROLE_CANDIDATO')">
+                        <a href="/tomarPruebas">
+                        <i class="icon-docs"></i>
+                        <span class="title">Tomar Pruebas</span>
+                        <th:block th:if="${selectedMenu.contains('tomarPruebas')}">
                             <span class="selected"></span>
                             <span class="arrow open"></span>
                         </th:block>
@@ -336,7 +364,7 @@
 	<!-- BEGIN FOOTER -->
 	<div class="page-footer">
 		<div class="page-footer-inner">
-			 2015 &copy; Archivo Tamto by Bromio &amp; Phesus.
+			 2015 &copy; Hermes HR. UDLAP.
 		</div>
 		<div class="scroll-to-top">
 			<i class="icon-arrow-up"></i>

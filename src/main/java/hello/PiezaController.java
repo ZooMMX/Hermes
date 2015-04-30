@@ -27,8 +27,8 @@ import java.time.Instant;
 import java.util.*;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 20/11/14
  * Time: 19:28
  */

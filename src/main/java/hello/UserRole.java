@@ -1,19 +1,18 @@
-package hello.entities;
+package hello;
 
+import hello.entities.User;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 21/11/14
  * Time: 13:28
  *
  * Roles disponibles:
- *      "ROLE_VENTAS"
- *      "ROLE_PLANEACION"
- *      "ROLE_PRODUCCION"
+ *      "ROLE_CANDIDATO"
  *      "ROLE_ADMIN"
  */
 @Audited(withModifiedFlag = true)

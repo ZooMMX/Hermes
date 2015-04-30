@@ -15,13 +15,13 @@
 </th:block>
 <div layout:fragment="content">
     <!-- BEGIN TABLE PORTLET-->
-    <div class="portlet box purple">
+    <div class="portlet box blue">
         <div class="portlet-title">
             <div class="caption">
                 <i class="icon-users"></i>Candidatos
             </div>
             <div class="actions">
-                <a href="/candidatos/asignar" class="btn btn-default btn-circle">
+                <a href="/candidatos/asignar" class="btn btn-default btn-circle" data-target="#ajax" data-toggle="modal">
                     <i class="fa fa-plus"></i>
                     <span class="hidden-480">
                     Asignar usuario como candidato </span>
@@ -84,7 +84,19 @@
                         <td th:text="${c.getUser().getFullname()}">Pau</td>
                         <td th:utext="${c.getEdad()}">28</td>
                         <td th:utext="${c.getPuesto()!=null} ? ${c.getPuesto().getDescripcion()} : 'No se asignó un puesto'">Software developer JR.</td>
-                        <td>Editar - Borrar</td>
+                        <td>
+                            <a th:href="${'/candidatos/ver/'+c.username}" data-target="#ajax" data-toggle="modal" class="btn btn-info">
+                                <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Ver</span>
+                            </a>
+                            <a th:href="${'/candidatos/ver/'+c.username+'?readonly=0'}" data-target="#ajax" data-toggle="modal"
+                               class="btn btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Editar</span>
+                            </a>
+                            <button type="button"
+                                    class="btn btn-danger" onclick="alert('Ésto es sólo un prototipo');">
+                                <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Archivar</span>
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

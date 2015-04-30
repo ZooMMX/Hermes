@@ -17,9 +17,8 @@ import java.sql.Blob;
 import java.sql.SQLException;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
- * Date: 13/12/14
+ * Proyecto Hermes HR
+ * User: paumedina
  * Time: 19:18
  */
 @Controller

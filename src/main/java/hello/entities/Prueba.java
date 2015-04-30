@@ -1,22 +1,15 @@
 package hello.entities;
 
 /**
- * Created by octavioruiz on 22/04/15.
+ * Created by paumedina on 22/04/15.
  */
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**

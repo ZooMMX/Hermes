@@ -1,7 +1,6 @@
 package hello;
 
 import hello.entities.User;
-import hello.entities.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,8 +13,8 @@ import javax.persistence.EntityManager;
 import java.util.*;
 
 /**
- * Proyecto Omoikane: SmartPOS 2.0
- * User: octavioruizcastillo
+ * Proyecto Hermes HR
+ * User: paumedina
  * Date: 04/12/14
  * Time: 13:52
  */
