@@ -256,7 +256,7 @@
                     </li>
                     <li th:class="${selectedMenu.contains('candidatos') ? 'active open' : ''}" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a href="/candidatos">
-                            <i class="icon-puzzle"></i>
+                            <i class="icon-users"></i>
                             <span class="title">Candidatos</span>
                             <th:block th:if="${selectedMenu.contains('candidatos')}">
                                 <span class="selected"></span>

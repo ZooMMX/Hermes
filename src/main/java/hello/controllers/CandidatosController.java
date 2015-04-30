@@ -35,6 +35,7 @@ public class CandidatosController {
         List<Candidato> candidatos = (List<Candidato>) candidatoRepository.findAll();
         model.addAttribute("selectedMenu", "candidatos");
         model.addAttribute("candidatos", candidatos);
+        model.addAttribute("noCandidatos", candidatos.size());
 
         return "vacante/candidatos";
     }

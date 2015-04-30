@@ -35,6 +35,12 @@ public class HomeController implements ErrorController {
     PiezaRepository piezaRepository;
 
     @Autowired
+    PruebaRepository pruebaRepository;
+
+    @Autowired
+    PuestoRepository puestoRepository;
+
+    @Autowired
     ArchivoRepository archivoRepository;
 
     @Autowired
@@ -44,8 +50,8 @@ public class HomeController implements ErrorController {
     public String dashboard(Model model) {
 
         List usuarios = (List) userRepository.findActiveUsers();
-        Long piezaSize = piezaRepository.count();
-        Long archivoSize = archivoRepository.count();
+        Long pruebaSize = pruebaRepository.count();
+        Long puestoSize = puestoRepository.count();
 
         /* Definir datos de la gráfica */
         String graphData = createGraphData();
@@ -55,8 +61,8 @@ public class HomeController implements ErrorController {
 
         model.addAttribute("selectedMenu", "dashboard");
         model.addAttribute("noUsuarios", usuarios.size());
-        model.addAttribute("noPiezas", piezaSize);
-        model.addAttribute("noArchivos", archivoSize);
+        model.addAttribute("noPruebas", pruebaSize);
+        model.addAttribute("noVacantes", puestoSize);
         model.addAttribute("graphData", graphData);
         model.addAttribute("revisiones", revisiones);
 
