@@ -30,10 +30,10 @@ var FormWizard = function () {
                     $('#form_wizard_1').find('.button-previous').show();
                 }
 
-                if (current >= total) {
+                //if (current >= total) {
+                if(current >= 3) {
                     $('#form_wizard_1').find('.button-next').hide();
                     $('#form_wizard_1').find('.button-submit').show();
-                    displayConfirm();
                 } else {
                     $('#form_wizard_1').find('.button-next').show();
                     $('#form_wizard_1').find('.button-submit').hide();
@@ -83,9 +83,20 @@ var FormWizard = function () {
             });
 
             $('#form_wizard_1').find('.button-previous').hide();
+            $('#form_wizard_1').find('.button-submit').hide();
+
+            if($('#tree_1 li').length == 0) {
+                $('#form_wizard_1').bootstrapWizard('last', 'true');
+                $('#form_wizard_1').find('.button-previous').hide();
+                $('#form_wizard_1').find('.button-next').hide();
+                $('#form_wizard_1').find('.button-submit').hide();
+            }
+
+            /*
             $('#form_wizard_1 .button-submit').click(function () {
                 alert('Finished! Hope you like it :)');
             }).hide();
+            */
 
         }
 

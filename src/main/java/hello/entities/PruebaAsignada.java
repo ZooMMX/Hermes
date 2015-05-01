@@ -1,5 +1,7 @@
 package hello.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 
 import javax.persistence.*;
@@ -28,6 +30,7 @@ public class PruebaAsignada implements Serializable {
     private String evaluacion;
 
     @Column
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     private Date fechaEvaluacion;
 
     @Lob

@@ -1,16 +1,18 @@
-<h2 th:text="${prueba.nombre}"></h2>
-<div class="row">
-    <div class="col-md-6">
-        <label>Preguntas</label>
-        <div class="fluidMedia">
-            <iframe name="viewer" id="viewer" th:src = "${'/plugins/PDFJS/web/viewer.html?file=/prueba/documento/'+prueba.id+'.pdf'}" width='566' height='400' style="text-align:center;" allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen">
-            </iframe>
+<form action="/tomarPruebas" class="form-horizontal" id="submit_form" method="POST">
+    <input type="hidden" name="prueba_id" th:value="${prueba.id}"/>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <h2 th:text="${prueba.nombre}"></h2>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Preguntas</label>
+            <div class="fluidMedia">
+                <iframe name="viewer" id="viewer" th:src = "${'/plugins/PDFJS/web/viewer.html?file=/prueba/documento/'+prueba.id+'.pdf'}" width='566' height='400' style="text-align:center;" allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen">
+                </iframe>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label>Escribe aquí tus respuestas</label>
+            <textarea name="respuestas" class="form-control" rows="22"></textarea>
         </div>
     </div>
-    <div class="col-md-6">
-        <label>Respuestas</label>
-        <textarea name="respuestas" class="form-control" rows="22">
-
-        </textarea>
-    </div>
-</div>
+</form>
