@@ -290,6 +290,16 @@
                         </th:block>
                         </a>
                     </li>
+                    <li class="last " th:class="${selectedMenu.contains('respondidas') ? 'active open' : ''}" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="/pruebasRespondidas">
+                            <i class="icon-docs"></i>
+                            <span class="title">Pruebas Aplicadas</span>
+                            <th:block th:if="${selectedMenu.contains('respondidas')}">
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
+                            </th:block>
+                        </a>
+                    </li>
                     <li class="last " th:class="${selectedMenu.contains('tomarPruebas') ? 'active open' : ''}" sec:authorize="hasRole('ROLE_CANDIDATO')">
                         <a href="/tomarPruebas">
                         <i class="icon-docs"></i>

@@ -10,15 +10,15 @@
 </th:block>
 <th:block layout:fragment="breadcrumb">
     <li>
-        <a href="/usuarios">Calificar pruebas</a>
+        <a href="/usuarios">Pruebas aplicadas</a>
     </li>
 </th:block>
 <div layout:fragment="content">
     <!-- BEGIN TABLE PORTLET-->
-    <div class="portlet box purple">
+    <div class="portlet box red-flamingo">
         <div class="portlet-title">
             <div class="caption">
-                <i class="icon-check"></i>Calificar pruebas
+                <i class="icon-check"></i>Pruebas aplicadas
             </div>
             <div class="actions">
                 <div class="btn-group">
@@ -57,10 +57,7 @@
                     <thead>
                     <tr>
                         <th>
-                            ID Candidato
-                        </th>
-                        <th>
-                            Nombre completo
+                            Candidato
                         </th>
                         <th>
                             Prueba
@@ -74,12 +71,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="user,iterationStatus  : ${users}">
-                        <td th:text="${iterationStatus.count}">1</td>
-                        <td th:text="${user.getFullname()}">ZooMMX</td>
-                        <td th:utext="${user.getUsername()}">Octavio Ruiz</td>
-                        <td th:utext="${user.getUserRoleString()}">Roles</td>
-                        <td th:utext="${user.getUserActionsHtml()}">Editar - Borrar</td>
+                    <tr th:each="prueba,iterationStatus  : ${pruebas}">
+                        <td th:text="${prueba.candidato.user.fullname}">Paula Noemi Medina</td>
+                        <td th:utext="${prueba.prueba.nombre}">Prueba psicológica</td>
+                        <td >Editar - Borrar</td>
+                        <td th:utext="${prueba.evaluacion==null?'Sin Evaluar':'Evaluada'}"></td>
                     </tr>
                     </tbody>
                 </table>
