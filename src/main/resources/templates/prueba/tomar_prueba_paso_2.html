@@ -1,12 +1,16 @@
 <h2 th:text="${prueba.nombre}"></h2>
-
-    <label>Preguntas</label>
-    <div class="fluidMedia">
-        <iframe name="viewer" id="viewer" th:src = "${'/plugins/PDFJS/web/viewer.html?file=/prueba/documento/'+prueba.id+'.pdf'}" width='566' height='400' style="text-align:center;" allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen">
-        </iframe>
+<div class="row">
+    <div class="col-md-6">
+        <label>Preguntas</label>
+        <div class="fluidMedia">
+            <iframe name="viewer" id="viewer" th:src = "${'/plugins/PDFJS/web/viewer.html?file=/prueba/documento/'+prueba.id+'.pdf'}" width='566' height='400' style="text-align:center;" allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen">
+            </iframe>
+        </div>
     </div>
+    <div class="col-md-6">
+        <label>Respuestas</label>
+        <textarea name="respuestas" class="form-control" rows="22">
 
-<label>Respuestas</label>
-<textarea name="respuestas" class="form-control" rows="3">
-
-</textarea>
+        </textarea>
+    </div>
+</div>

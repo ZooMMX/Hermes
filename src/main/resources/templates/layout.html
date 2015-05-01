@@ -392,12 +392,12 @@
 <!-- END CORE PLUGINS -->
 <script src="scripts/metronic.js" th:src="@{/scripts/metronic.js}" type="text/javascript"></script>
 <script src="scripts/layout.js" th:src="@{/scripts/layout.js}" type="text/javascript"></script>
-<script src="scripts/demo.js" th:src="@{/scripts/demo.js}" type="text/javascript"></script>
+
 <script>
       jQuery(document).ready(function() {    
          Metronic.init(); // init metronic core components
          Layout.init(); // init current layout
-         Demo.init(); // init demo features
+
       });
    </script>
    <th:block layout:fragment="scripts"></th:block>

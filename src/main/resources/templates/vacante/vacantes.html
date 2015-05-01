@@ -15,11 +15,103 @@
 </th:block>
 <div layout:fragment="content">
 
-    <h2 translate="hermesApp.puesto.home.title">Vacantes</h2>
+<!-- BEGIN TABLE PORTLET-->
+    <div class="portlet box red-flamingo">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-users"></i>Vacantes
+            </div>
+            <div class="actions">
+                <button class="btn btn-circle btn-default" data-toggle="modal" data-target="#savePuestoModal" ng-click="clear()">
+                        <span class="icon-note"></span> <span translate="hermesApp.puesto.home.createLabel">Agregar vacantes</span>
+                    </button>
 
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#savePuestoModal" ng-click="clear()">
-        <span class="icon-note"></span> <span translate="hermesApp.puesto.home.createLabel">Agregar vacantes</span>
-    </button>
+                <div class="btn-group">
+                    <a class="btn btn-default btn-circle" href="#" data-toggle="dropdown">
+                        <i class="fa fa-share"></i>
+                        <span class="hidden-480">
+                        Herramientas </span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="#" id="xlsLink" download="usuarios.xls" onClick ="$('#table').tableExport({type:'excel',escape:'false'});">
+                                Exportar a Excel </a>
+                        </li>
+                        <li>
+                            <a href="#" id="csvLink" download="usuarios.csv" onclick="$('#table').tableExport({type:'csv',escape:'false'});">
+                                Exportar a CSV </a>
+                        </li>
+                        <li>
+                            <a href="#" id="xmlLink" download="usuarios.xml" onclick="$('#table').tableExport({type:'xml',escape:'false'});">
+                                Exportar a XML </a>
+                        </li>
+                        <!--<li class="divider">
+                        </li>
+                        <li>
+                            <a href="#">
+                            Imprimir </a>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Descripción
+                        </th>
+                        <th>
+                            Tipo Contrato
+                        </th>
+                        <th>
+                            Responsabilidades
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="puesto, i : ${puestos}">
+                                    <td th:text="${puesto.id}"></td>
+                                    <td th:text="${puesto.descripcion}"></td>
+                                    <td th:text="${puesto.tipo_contrato}"></td>
+                                    <td th:text="${puesto.responsabilidades.substring(0,30)}"></td>
+                                    <!--<td>{{puesto.sueldo}}</td>-->
+                                    <!--<td>{{puesto.nivel_academico}}</td>
+                                    <td>{{puesto.experiencia_laboral}}</td>
+                                    <td>{{puesto.conocimientos}}</td>
+                                    <td>{{puesto.aptitudes}}</td>-->
+                                    <td>
+                                        <a th:href="${'/vacante/'+puesto.id}" data-target="#ajax" data-toggle="modal"
+                                           class="btn btn-info">
+                                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Ver</span>
+                                        </a>
+                                        <a th:href="${'/vacante/'+puesto.id+'?readonly=0'}" data-target="#ajax" data-toggle="modal"
+                                           class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Editar</span>
+                                        </a>
+                                        <button type="button"
+                                                class="btn btn-danger" onclick="alert('Ésto es sólo un prototipo');">
+                                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Archivar</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END TABLE PORTLET-->
+
+
     <div class="modal fade" id="savePuestoModal" tabindex="-1" role="dialog" aria-labelledby="myPuestoLabel"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -111,51 +203,7 @@
         </div>
     </div>
 
-    <div class="table-responsive">a
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th translate="hermesApp.puesto.descripcion">Descripcion</th>
-                <th translate="hermesApp.puesto.tipo_contrato">Tipo_contrato</th>
-                <th translate="hermesApp.puesto.responsabilidades">Responsabilidades</th>
-                <!--<th translate="hermesApp.puesto.sueldo">Sueldo</th>-->
-                <!--<th translate="hermesApp.puesto.nivel_academico">Nivel_academico</th>
-                <th translate="hermesApp.puesto.experiencia_laboral">Experiencia_laboral</th>
-                <th translate="hermesApp.puesto.conocimientos">Conocimientos</th>
-                <th translate="hermesApp.puesto.aptitudes">Aptitudes</th>-->
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="puesto, i : ${puestos}">
-                <td th:text="${puesto.id}"></td>
-                <td th:text="${puesto.descripcion}"></td>
-                <td th:text="${puesto.tipo_contrato}"></td>
-                <td th:text="${puesto.responsabilidades.substring(0,30)}"></td>
-                <!--<td>{{puesto.sueldo}}</td>-->
-                <!--<td>{{puesto.nivel_academico}}</td>
-                <td>{{puesto.experiencia_laboral}}</td>
-                <td>{{puesto.conocimientos}}</td>
-                <td>{{puesto.aptitudes}}</td>-->
-                <td>
-                    <a th:href="${'/vacante/'+puesto.id}" data-target="#ajax" data-toggle="modal"
-                       class="btn btn-info">
-                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Ver</span>
-                    </a>
-                    <a th:href="${'/vacante/'+puesto.id+'?readonly=0'}" data-target="#ajax" data-toggle="modal"
-                       class="btn btn-primary">
-                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Editar</span>
-                    </a>
-                    <button type="button"
-                            class="btn btn-danger" onclick="alert('Ésto es sólo un prototipo');">
-                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Archivar</span>
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+
     <!-- Generic Modal -->
     <div class="modal fade" id="ajax" role="basic" aria-hidden="true">
         <div class="page-loading page-loading-boxed">
