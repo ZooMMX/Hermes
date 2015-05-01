@@ -90,7 +90,7 @@ public class PruebasController {
         return "prueba/prueba";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping("/prueba/documento/{id}.pdf")
     public String viewDocumento(@PathVariable("id")
                        Long id, HttpServletResponse response) {

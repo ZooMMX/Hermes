@@ -14,121 +14,130 @@
         </li>
     </th:block>
     <div layout:fragment="content">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
-                <div class="dashboard-stat blue-madison">
-                    <div class="visual">
-                        <i class="fa icon-puzzle fa-icon-medium"></i>
-                    </div>
-                    <div class="details">
-                        <div class="number"  th:text="${noPruebas}">
-                             3,080
-                        </div>
-                        <div class="desc">
-                             Pruebas
-                        </div>
-                    </div>
-                    <a class="more" href="/pruebas">
-                    Ver <i class="m-icon-swapright m-icon-white"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="dashboard-stat red-intense">
-                    <div class="visual">
-                        <i class="fa fa-briefcase"></i>
-                    </div>
-                    <div class="details">
-                        <div class="number" th:text="${noVacantes}">
-                             1,127,390
-                        </div>
-                        <div class="desc">
-                             Vacantes
-                        </div>
-                    </div>
-                    <a class="more" href="/vacantes">
-                    Ver <i class="m-icon-swapright m-icon-white"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="dashboard-stat green-haze">
-                    <div class="visual">
-                        <i class="fa fa-group fa-icon-medium"></i>
-                    </div>
-                    <div class="details">
-                        <div class="number" th:text="${noUsuarios}">
-                             8
-                        </div>
-                        <div class="desc">
-                             Usuarios
-                        </div>
-                    </div>
-                    <a class="more" href="/usuarios">
-                    Ver <i class="m-icon-swapright m-icon-white"></i>
-                    </a>
-                </div>
-            </div>
+        <!-- Begin candidate dashboard -->
+        <div style="padding-top: 50px; text-align: center;" sec:authorize="hasRole('ROLE_CANDIDATO')">
+            <h1>Bienvenido</h1>
         </div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="portlet light ">
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class="icon-share font-blue-steel hide"></i>
-                            <span class="caption-subject font-blue-steel bold uppercase">Actividad reciente</span>
+        <!-- End of candidate dashboard -->
+        <!-- Begin admin dashboard -->
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa icon-puzzle fa-icon-medium"></i>
                         </div>
-                        <div class="actions">
-                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
-                            <ul class="feeds">
-                                <li th:each="rev : ${revisiones}">
-                                    <!-- Link de la actividad -->
-                                    <!--<a href="#">-->
-                                    <div class="col1">
-                                        <div class="cont">
-                                            <div class="cont-col1">
-                                                <th:block th:utext="${rev.getIconHtml()}">
-                                                <div class="label label-sm label-success">
-                                                    <i class="fa fa-bar-chart-o"></i>
-                                                </div>
-                                                </th:block>
-                                            </div>
-                                            <div class="cont-col2">
-                                                <div class="desc" th:text="${rev.getDescripcion()+' por '+rev.getUserFullName()}">
-                                                    Usuario Agregado
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="date" th:text="${rev.getElapsedTimeString()}">
-                                             20 mins
-                                        </div>
-                                    </div>
-                                    <!-- Termina link de la actividad -->
-                                    <!--</a>-->
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Ver todos los registros
-                        <div class="scroller-footer">
-                            <div class="btn-arrow-link pull-right">
-                                <a href="#">Ver todos los registros</a>
-                                <i class="icon-arrow-right"></i>
+                        <div class="details">
+                            <div class="number"  th:text="${noPruebas}">
+                                 3,080
                             </div>
-                        </div> -->
+                            <div class="desc">
+                                 Pruebas
+                            </div>
+                        </div>
+                        <a class="more" href="/pruebas">
+                        Ver <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat red-intense">
+                        <div class="visual">
+                            <i class="fa fa-briefcase"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number" th:text="${noVacantes}">
+                                 1,127,390
+                            </div>
+                            <div class="desc">
+                                 Vacantes
+                            </div>
+                        </div>
+                        <a class="more" href="/vacantes">
+                        Ver <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green-haze">
+                        <div class="visual">
+                            <i class="fa fa-group fa-icon-medium"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number" th:text="${noUsuarios}">
+                                 8
+                            </div>
+                            <div class="desc">
+                                 Usuarios
+                            </div>
+                        </div>
+                        <a class="more" href="/usuarios">
+                        Ver <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-share font-blue-steel hide"></i>
+                                <span class="caption-subject font-blue-steel bold uppercase">Actividad reciente</span>
+                            </div>
+                            <div class="actions">
+                                <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
+                                <ul class="feeds">
+                                    <li th:each="rev : ${revisiones}">
+                                        <!-- Link de la actividad -->
+                                        <!--<a href="#">-->
+                                        <div class="col1">
+                                            <div class="cont">
+                                                <div class="cont-col1">
+                                                    <th:block th:utext="${rev.getIconHtml()}">
+                                                    <div class="label label-sm label-success">
+                                                        <i class="fa fa-bar-chart-o"></i>
+                                                    </div>
+                                                    </th:block>
+                                                </div>
+                                                <div class="cont-col2">
+                                                    <div class="desc" th:text="${rev.getDescripcion()+' por '+rev.getUserFullName()}">
+                                                        Usuario Agregado
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col2">
+                                            <div class="date" th:text="${rev.getElapsedTimeString()}">
+                                                 20 mins
+                                            </div>
+                                        </div>
+                                        <!-- Termina link de la actividad -->
+                                        <!--</a>-->
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Ver todos los registros
+                            <div class="scroller-footer">
+                                <div class="btn-arrow-link pull-right">
+                                    <a href="#">Ver todos los registros</a>
+                                    <i class="icon-arrow-right"></i>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+            <div class="clearfix">
+            </div>
         </div>
-        <div class="clearfix">
-        </div>
+        <!-- End admin dashboard -->
 
     </div>
     <!-- Page level scripts -->
