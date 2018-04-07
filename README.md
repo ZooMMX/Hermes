@@ -1,2 +1,2 @@
 # Hermes
-Hermes HR. Proyecto maestría
+Hermes HR. 
